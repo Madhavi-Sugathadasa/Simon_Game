@@ -1,4 +1,4 @@
-##A model of Simon Game
+## A model of Simon Game
 
 ---
 This is how the Simon game works.
