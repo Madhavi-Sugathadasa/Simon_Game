@@ -8,3 +8,5 @@ Next, the game shows the next colour (let say red), the user has to remember the
 If the user messes up the sequence, then the game ends.
 
 ---
+Link:
+https://madhavi-sugathadasa.github.io/Simon_Game/
