@@ -3,6 +3,7 @@ let gamePattern = [];
 let userClickedPattern = [];
 var started = false;
 let level = 0;
+let index_of_last = 0;
 
 //play sound
 function playSound(name) {
@@ -11,7 +12,7 @@ function playSound(name) {
 }
 
 function nextSequence() {
-
+    userClickedPattern = [];
     level++;
     $("#level-title").text("Level " + level);
     //generate a new random number between 0 and 3
@@ -21,7 +22,7 @@ function nextSequence() {
 
     $("#" + randomChosenColour).fadeIn(100).fadeOut(100).fadeIn(100);
     playSound(randomChosenColour);
-    
+
 
 }
 
@@ -32,7 +33,8 @@ $("div[type='button']").click(function () {
     userClickedPattern.push(userChosenColour);
     playSound(userChosenColour);
     animatePress(userChosenColour);
-    return false;
+
+    checkAnswer(userClickedPattern.length - 1);
 
 });
 
@@ -44,10 +46,32 @@ function animatePress(currentColour) {
     }, 100);
 }
 
-$(document).keypress(function(e) {
+$(document).keypress(function (e) {
     if (!started) {
         $("#level-title").text("Level " + level);
         nextSequence();
         started = true;
     }
 });
+
+function checkAnswer(currentLevel) {
+
+    if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
+
+        console.log("success");
+
+        if (userClickedPattern.length === gamePattern.length) {
+
+            setTimeout(function () {
+                nextSequence();
+            }, 1000);
+
+        }
+
+    } else {
+
+        console.log("wrong");
+
+    }
+
+}
